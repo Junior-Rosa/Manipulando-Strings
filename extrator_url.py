@@ -5,13 +5,15 @@ class ExtratorURL:
     def __init__(self, url):
         self.url = self.sanitiza_url(url)
         self.valida_url()
-
+    
+    #verifica se tem espaços vazios ou tabulações no codigo
     def sanitiza_url(self, url):
         if type(url) == str:
             return url.strip()
         else:
             return ""
-
+        
+    #retorna o erro se está vazia, após tratada
     def valida_url(self):
         if not self.url:
             raise ValueError("A URL está vazia")
@@ -21,6 +23,7 @@ class ExtratorURL:
         if not match:
             raise ValueError("A URL não é válida.")
 
+    #pega a url base até o '?'
     def get_url_base(self):
         indice_interrogacao = self.url.find('?')
         url_base = self.url[:indice_interrogacao]
